@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">screen5</string>
+    <string name="camera_not_found">\"camera not found\"</string>
+    <string name="email">Finalize match and send report</string>
+</resources>
