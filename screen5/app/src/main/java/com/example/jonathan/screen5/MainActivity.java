@@ -136,9 +136,10 @@ public class MainActivity extends AppCompatActivity {
 
                 Drawable img = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(data, 0, data.length));
                 Bitmap bitmap = ((BitmapDrawable)img).getBitmap();
+                Bitmap b = Bitmap.createScaledBitmap(bitmap, 120, 120, false);
                 img0 = findViewById(R.id.imageView4);
                 //img0.setRotation(90);
-                img0.setImageBitmap(bitmap);
+                img0.setImageBitmap(b);
 
                 File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/MATCH_PICTURES");
                 if(!dir.exists()){
@@ -152,9 +153,9 @@ public class MainActivity extends AppCompatActivity {
                         outFileFront.createNewFile();
                     }
                     outStream = new FileOutputStream(outFileFront);
-                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,outStream);
+                    bitmap.compress(Bitmap.CompressFormat.PNG,100,outStream);
                     outStream.flush();
-                    outStream.close ();
+                    outStream.close();
 
                 }catch (IOException e){
                     e.printStackTrace();
@@ -175,9 +176,10 @@ public class MainActivity extends AppCompatActivity {
 
                 Drawable img = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(data, 0, data.length));
                 Bitmap bitmap = ((BitmapDrawable)img).getBitmap();
+                Bitmap b = Bitmap.createScaledBitmap(bitmap, 120, 120, false);
                 img0 = findViewById(R.id.imageView3);
                 //img0.setRotation(90);
-                img0.setImageBitmap(bitmap);
+                img0.setImageBitmap(b);
 
 
                 File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/MATCH_PICTURES");
@@ -192,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
                         outFileBack.createNewFile();
                     }
                     outStream = new FileOutputStream(outFileBack);
-                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,outStream);
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
                     outStream.flush();
                     outStream.close();
 
