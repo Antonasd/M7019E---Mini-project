@@ -15,8 +15,10 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
     Button emailButton;
     FileOutputStream outStream = null;
 
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private int REQUEST_TAKE_PHOTO;
+    String mCurrentPhotoPath;
+    String fileString;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,15 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
         final PDFGenerator pdfGenerator = new PDFGenerator();
 
-        ctx = this;
-        preview = new Preview(this, (SurfaceView) findViewById(R.id.surfaceView2));
-        preview.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        ((ConstraintLayout) findViewById(R.id.layout)).addView(preview);
-        preview.setKeepScreenOn(true);
-
-
-
-        preview.setCamera(mCamera);
 
         button0 = findViewById(R.id.button);
         button1 = findViewById(R.id.button2);
@@ -104,13 +102,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
         //FRONT
         button0.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                mCamera.takePicture(null, null, rawCallback0);
                 scanFront = true;
+                dispatchTakePictureIntent();
+                REQUEST_TAKE_PHOTO = 1;
+
 
             }
         });
@@ -120,25 +122,102 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
-                mCamera.takePicture(null, null, rawCallback1);
                 scanBack = true;
-
+                dispatchTakePictureIntent();
+                REQUEST_TAKE_PHOTO =0;
             }
         });
 
     }
-    /** USED FOR TAKING PHOTO OF THE FRONT OF REPORT*/
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        /**if (!storageDir.exists()){
+            storageDir.mkdirs();
+        }*/
+        System.out.println(storageDir);
+
+        if(scanFront){
+            fileString = "front";
+            outFileFront = File.createTempFile(
+                    fileString,  /* prefix */
+                    ".jpg",         /* suffix */
+                    storageDir      /* directory */
+            );
+            // Save a file: path for use with ACTION_VIEW intents
+            mCurrentPhotoPath = outFileFront.getAbsolutePath();
+            return outFileFront;
+
+        }
+        else if(scanBack){
+            fileString = "back";
+            outFileBack = File.createTempFile(
+                    fileString,  /* prefix */
+                    ".jpg",         /* suffix */
+                    storageDir      /* directory */
+            );
+            // Save a file: path for use with ACTION_VIEW intents
+            mCurrentPhotoPath = outFileBack.getAbsolutePath();
+            return outFileBack;
+        }
+        return outFileBack;
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File.
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.example.android.FileProvider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //Front
+        if (requestCode == 1) {
+            img0 = findViewById(R.id.imageView4);
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            img0.setImageBitmap(imageBitmap);
+        }
+        //Back
+        if (requestCode == 0) {
+            img1 = findViewById(R.id.imageView3);
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            img1.setImageBitmap(imageBitmap);
+
+        }
+    }
+
+
+        /** USED FOR TAKING PHOTO OF THE FRONT OF REPORT*
     private PictureCallback rawCallback0 = new PictureCallback() {
 
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
             if(data != null){
-
                 Drawable img = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(data, 0, data.length));
                 Bitmap bitmap = ((BitmapDrawable)img).getBitmap();
                 Bitmap b = Bitmap.createScaledBitmap(bitmap, 120, 120, false);
                 img0 = findViewById(R.id.imageView4);
-                //img0.setRotation(90);
+                img0.setRotation(90);
                 img0.setImageBitmap(b);
 
                 File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/MATCH_PICTURES");
@@ -166,8 +245,8 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
-    /** USED FOR TAKING PHOTO OF THE BACK OF REPORT*/
+    /**
+    /** USED FOR TAKING PHOTO OF THE BACK OF REPORT
     private PictureCallback rawCallback1 = new PictureCallback() {
 
         @Override
@@ -178,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
                 Bitmap bitmap = ((BitmapDrawable)img).getBitmap();
                 Bitmap b = Bitmap.createScaledBitmap(bitmap, 120, 120, false);
                 img0 = findViewById(R.id.imageView3);
-                //img0.setRotation(90);
+                img0.setRotation(90);
                 img0.setImageBitmap(b);
 
 
@@ -205,130 +284,6 @@ public class MainActivity extends AppCompatActivity {
             }
             camera.startPreview();
         }
-    };
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        int numCams = Camera.getNumberOfCameras();
-        if(numCams > 0){
-            try{
-                mCamera = Camera.open(0);
-                mCamera.startPreview();
-                preview.setCamera(mCamera);
-            } catch (RuntimeException ex){
-                Toast.makeText(ctx, getString(R.string.camera_not_found), Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        if(mCamera != null) {
-            mCamera.stopPreview();
-            preview.setCamera(null);
-            mCamera.release();
-            mCamera = null;
-        }
-        super.onPause();
-    }
-
-    private void resetCam() {
-        mCamera.startPreview();
-        preview.setCamera(mCamera);
-    }
-
-    private void refreshGallery(File file) {
-        Intent mediaScanIntent = new Intent( Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        mediaScanIntent.setData(Uri.fromFile(file));
-        sendBroadcast(mediaScanIntent);
-    }
-
-
-
-    /** NOT USED*/
-    Camera.ShutterCallback shutterCallback = new Camera.ShutterCallback() {
-        public void onShutter() {
-            //			 Log.d(TAG, "onShutter'd");
-        }
-    };
-
-    Camera.PictureCallback rawCallback = new Camera.PictureCallback() {
-        public void onPictureTaken(byte[] data, Camera camera) {
-            //			 Log.d(TAG, "onPictureTaken - raw");
-        }
-    };
-
-    Camera.PictureCallback jpegCallback = new Camera.PictureCallback() {
-        public void onPictureTaken(byte[] data, Camera camera) {
-            new SaveImageTask().execute(data);
-            resetCam();
-            Log.d(TAG, "onPictureTaken - jpeg");
-        }
-    };
-
-
-    /** NOT USED */
-    private class SaveImageTask extends AsyncTask<byte[], Void, Void> {
-
-        @Override
-        protected Void doInBackground(byte[]... data) {
-            FileOutputStream outStream = null;
-
-            // Write to SD Card
-            try {
-                File sdCard = Environment.getExternalStorageDirectory();
-                File dir = new File (sdCard.getAbsolutePath() + "/camtest");
-                dir.mkdirs();
-
-                if (scanFront){
-
-                    String fileFront = "front";
-                    outFileFront = new File(dir, fileFront);
-                    if(!outFileFront.exists()){
-                        outFileFront.createNewFile();
-                    }
-
-                    outStream = new FileOutputStream(outFileFront);
-                    outStream.write(data[0]);
-                    outStream.flush();
-                    outStream.close();
-                    Log.d(TAG, "onPictureTaken - wrote bytes: " + data.length + " to " + outFileFront.getAbsolutePath());
-
-                    refreshGallery(outFileFront);
-                    System.out.println(outFileFront);
-                    System.out.println(scanFront);
-                }
-                else if(scanBack){
-
-                    String fileBack = "back";
-                    outFileBack = new File(dir, fileBack);
-                    if(!outFileBack.exists()){
-                        outFileBack.createNewFile();
-                    }
-                    outStream = new FileOutputStream(outFileBack);
-                    outStream.write(data[0]);
-                    outStream.flush();
-                    outStream.close();
-                    Log.d(TAG, "onPictureTaken - wrote bytes: " + data.length + " to " + outFileBack.getAbsolutePath());
-
-                    refreshGallery(outFileBack);
-                    System.out.println(outFileBack);
-                    System.out.println(scanBack);
-                }
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-            }
-            scanFront = false;
-            scanBack = false;
-            return null;
-        }
-
-    }
+    }; */
 
 }
