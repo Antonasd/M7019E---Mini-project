@@ -30,8 +30,7 @@ public class PDFGenerator{
     String $GROUPCODE="3";
     String $MC="4";
     String LOG_TAG;
-    Image imgFront;
-    Image imgBack;
+
 
     public void createPDF(String front, String back) throws FileNotFoundException, DocumentException, IOException{
         String[] IMAGES = {front, back};
@@ -56,9 +55,12 @@ public class PDFGenerator{
         document.add(new Paragraph("Hejsan, owaodbaiwbdvoawovufvafvbavwfbaowfuvofawvbfabfoawvfuawfvaowfv"));
         for (String image : IMAGES) {
             img = Image.getInstance(image);
-            document.setPageSize(img);
+            //document.setPageSize(img);
             document.newPage();
             img.setAbsolutePosition(0, 0);
+            float documentWidth = document.getPageSize().getWidth() - document.leftMargin() - document.rightMargin();
+            float documentHeight = document.getPageSize().getHeight() - document.topMargin() - document.bottomMargin();
+            img.scaleAbsolute(documentWidth, documentHeight);
             document.add(img);
         }
 

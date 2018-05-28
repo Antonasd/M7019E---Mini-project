@@ -7,10 +7,7 @@ import com.itextpdf.text.DocumentException;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.hardware.Camera;
-import android.hardware.Camera.PictureCallback;
+
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -22,8 +19,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -41,10 +37,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "yolo";
-    private SurfaceView mSurfaceView;
-    private SurfaceHolder mSurfaceHolder;
-    private Camera mCamera;
-    private Preview preview;
     private Context ctx;
     private boolean scanFront = false;
     private boolean scanBack = false;
@@ -55,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
     File outFileFront;
     File outFileBack;
     Button emailButton;
-    FileOutputStream outStream = null;
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
     private int REQUEST_TAKE_PHOTO;
     String mCurrentPhotoPath;
     String fileString;
+    String frontPath;
+    String backPath;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -85,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    pdfGenerator.createPDF(outFileFront.toString() , outFileBack.toString());
+                    pdfGenerator.createPDF(frontPath, backPath);
+                    //Toast.makeText(ctx, "Successfully made a PDF!", Toast.LENGTH_LONG).show();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch(NullPointerException e){
@@ -137,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
         /**if (!storageDir.exists()){
             storageDir.mkdirs();
         }*/
-        System.out.println(storageDir);
 
         if(scanFront){
             fileString = "front";
@@ -148,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             );
             // Save a file: path for use with ACTION_VIEW intents
             mCurrentPhotoPath = outFileFront.getAbsolutePath();
+            System.out.println(mCurrentPhotoPath);
             return outFileFront;
 
         }
@@ -160,8 +153,11 @@ public class MainActivity extends AppCompatActivity {
             );
             // Save a file: path for use with ACTION_VIEW intents
             mCurrentPhotoPath = outFileBack.getAbsolutePath();
+            System.out.println(mCurrentPhotoPath);
             return outFileBack;
         }
+        scanFront = false;
+        scanBack = false;
         return outFileBack;
     }
 
@@ -184,106 +180,82 @@ public class MainActivity extends AppCompatActivity {
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
+           // startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
         }
+
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //Front
+        //Handling for the front image
         if (requestCode == 1) {
+            /**img0 = findViewById(R.id.imageView4);
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            img0.setImageBitmap(imageBitmap);*/
             img0 = findViewById(R.id.imageView4);
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            img0.setImageBitmap(imageBitmap);
+            ///
+            // Get the dimensions of the View
+            int targetW = img0.getWidth();
+            int targetH = img0.getHeight();
+
+            // Get the dimensions of the bitmap
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            bmOptions.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+            int photoW = bmOptions.outWidth;
+            int photoH = bmOptions.outHeight;
+
+            // Determine how much to scale down the image
+            int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+            // Decode the image file into a Bitmap sized to fill the View
+            bmOptions.inJustDecodeBounds = false;
+            bmOptions.inSampleSize = scaleFactor;
+            bmOptions.inPurgeable = true;
+
+            System.out.println(mCurrentPhotoPath);
+            Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+            img0.setImageBitmap(bitmap);
+            frontPath = mCurrentPhotoPath;
+
+
+
+
         }
-        //Back
+        // Handling for back image
         if (requestCode == 0) {
-            img1 = findViewById(R.id.imageView3);
+           /** img1 = findViewById(R.id.imageView3);
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            img1.setImageBitmap(imageBitmap);
+            img1.setImageBitmap(imageBitmap);*/
+
+
+            img1 = findViewById(R.id.imageView3);
+            // Get the dimensions of the View
+            int targetW = img1.getWidth();
+            int targetH = img1.getHeight();
+
+            // Get the dimensions of the bitmap
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            bmOptions.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+            int photoW = bmOptions.outWidth;
+            int photoH = bmOptions.outHeight;
+
+            // Determine how much to scale down the image
+            int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+            // Decode the image file into a Bitmap sized to fill the View
+            bmOptions.inJustDecodeBounds = false;
+            bmOptions.inSampleSize = scaleFactor;
+            bmOptions.inPurgeable = true;
+
+            Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+            img1.setImageBitmap(bitmap);
+            backPath = mCurrentPhotoPath;
 
         }
     }
-
-
-        /** USED FOR TAKING PHOTO OF THE FRONT OF REPORT*
-    private PictureCallback rawCallback0 = new PictureCallback() {
-
-        @Override
-        public void onPictureTaken(byte[] data, Camera camera) {
-            if(data != null){
-                Drawable img = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(data, 0, data.length));
-                Bitmap bitmap = ((BitmapDrawable)img).getBitmap();
-                Bitmap b = Bitmap.createScaledBitmap(bitmap, 120, 120, false);
-                img0 = findViewById(R.id.imageView4);
-                img0.setRotation(90);
-                img0.setImageBitmap(b);
-
-                File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/MATCH_PICTURES");
-                if(!dir.exists()){
-                    dir.mkdirs();
-                }
-                try{
-
-                    String fileFront = "front";
-                    outFileFront = new File(dir, fileFront);
-                    if(!outFileFront.exists()){
-                        outFileFront.createNewFile();
-                    }
-                    outStream = new FileOutputStream(outFileFront);
-                    bitmap.compress(Bitmap.CompressFormat.PNG,100,outStream);
-                    outStream.flush();
-                    outStream.close();
-
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-
-            }
-            camera.startPreview();
-        }
-    };
-
-    /**
-    /** USED FOR TAKING PHOTO OF THE BACK OF REPORT
-    private PictureCallback rawCallback1 = new PictureCallback() {
-
-        @Override
-        public void onPictureTaken(byte[] data, Camera camera) {
-            if(data != null){
-
-                Drawable img = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(data, 0, data.length));
-                Bitmap bitmap = ((BitmapDrawable)img).getBitmap();
-                Bitmap b = Bitmap.createScaledBitmap(bitmap, 120, 120, false);
-                img0 = findViewById(R.id.imageView3);
-                img0.setRotation(90);
-                img0.setImageBitmap(b);
-
-
-                File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/MATCH_PICTURES");
-                if(!dir.exists()){
-                    dir.mkdirs();
-                }
-                try{
-
-                    String fileFront = "back";
-                    outFileBack = new File(dir, fileFront);
-                    if(!outFileBack.exists()){
-                        outFileBack.createNewFile();
-                    }
-                    outStream = new FileOutputStream(outFileBack);
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
-                    outStream.flush();
-                    outStream.close();
-
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-
-            }
-            camera.startPreview();
-        }
-    }; */
-
 }
