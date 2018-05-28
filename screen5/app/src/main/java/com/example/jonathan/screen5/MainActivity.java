@@ -8,11 +8,14 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.FileProvider;
@@ -37,7 +40,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "yolo";
-    private Context ctx;
+    Context ctx;
     private boolean scanFront = false;
     private boolean scanBack = false;
     Button button0;
@@ -70,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         button0 = findViewById(R.id.button);
         button1 = findViewById(R.id.button2);
         emailButton = findViewById(R.id.buttonEmail);
+        img0 = findViewById(R.id.imageView4);
+        img1 = findViewById(R.id.imageView3);
 
 
         /** FINALIZING REPORT, GENERATING PDF AND EMAILING THAT PDF*/
@@ -78,12 +83,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     pdfGenerator.createPDF(frontPath, backPath);
-                    //Toast.makeText(ctx, "Successfully made a PDF!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Successfully made a PDF!", Toast.LENGTH_LONG).show();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch(NullPointerException e){
                     e.printStackTrace();
-                    Toast.makeText(ctx, "You forgot the picture(s)", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "You forgot the picture(s)", Toast.LENGTH_LONG).show();
 
                 } catch (DocumentException e) {
                     e.printStackTrace();
@@ -121,6 +126,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private boolean hasImage(@NonNull ImageView view) {
+        Drawable drawable = view.getDrawable();
+        boolean hasImage = (drawable != null);
+
+        if (hasImage && (drawable instanceof BitmapDrawable)) {
+            hasImage = ((BitmapDrawable)drawable).getBitmap() != null;
+        }
+
+        return hasImage;
     }
 
     private File createImageFile() throws IOException {
@@ -194,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             img0.setImageBitmap(imageBitmap);*/
-            img0 = findViewById(R.id.imageView4);
             ///
             // Get the dimensions of the View
             int targetW = img0.getWidth();
@@ -232,7 +247,6 @@ public class MainActivity extends AppCompatActivity {
             img1.setImageBitmap(imageBitmap);*/
 
 
-            img1 = findViewById(R.id.imageView3);
             // Get the dimensions of the View
             int targetW = img1.getWidth();
             int targetH = img1.getHeight();
