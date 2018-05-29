@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -43,6 +44,7 @@ public class Screen5 extends AppCompatActivity {
 
     private boolean scanFront = false;
     private boolean scanBack = false;
+    TextView header;
     Button button0;
     Button button1;
     ImageView img0;
@@ -62,14 +64,14 @@ public class Screen5 extends AppCompatActivity {
     Boolean front = false;
     Boolean back = false;
 
+    String path = null;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA},1);
-        String matchID = "XXX";
-        setTitle("Register Result: " + matchID);
         setContentView(R.layout.activity_screen5);
 
         final String matchcode = getIntent().getStringExtra("MATCH_CODE");
@@ -90,6 +92,8 @@ public class Screen5 extends AppCompatActivity {
             players_team2 += (p.name + "\n");
         }
 
+        header = findViewById(R.id.header);
+        header.setText("Report results for match "+matchcode);
         button0 = findViewById(R.id.button);
         button1 = findViewById(R.id.button2);
         emailButton = findViewById(R.id.buttonEmail);
@@ -104,8 +108,8 @@ public class Screen5 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    pdfGenerator.createPDF(frontPath, backPath, matchcode, time, group, teamname1, teamname2, players_team1, players_team2);
-                    Toast.makeText(getApplicationContext(), "Successfully made a PDF!", Toast.LENGTH_LONG).show();
+                    path = pdfGenerator.createPDF(frontPath, backPath, matchcode, time, group, teamname1, teamname2, players_team1, players_team2);
+                    //Toast.makeText(getApplicationContext(), "Successfully made a PDF!", Toast.LENGTH_LONG).show();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch(NullPointerException e){
@@ -118,26 +122,8 @@ public class Screen5 extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                try {
-                    // Write a dummy text file to this application's internal
-                    // cache dir.
-                    Utils.createCachedFile(Screen5.this,
-                            "Test.txt", "This is a test");
-
-                    // Then launch the activity to send that file via gmail.
-                    startActivity(Utils.getSendEmailIntent(
-                            Screen5.this,
-                            email, "Gammelstads IF - Match Result", //TODO Pass teams here?
-                            "See attached", "Test.txt"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                // Catch if Gmail is not available on this device
-                catch (ActivityNotFoundException e) {
-                    Toast.makeText(Screen5.this,
-                            "Gmail is not available on this device.",
-                            Toast.LENGTH_SHORT).show();
-                }
+                // Finally: send the email
+                sendEmail(email, "Gammelstads IF - Match Result", teamname1+" vs "+teamname2);
             }
         });
 
@@ -149,8 +135,6 @@ public class Screen5 extends AppCompatActivity {
                 scanFront = true;
                 dispatchTakePictureIntent();
                 REQUEST_TAKE_PHOTO = 1;
-
-
             }
         });
 
@@ -164,7 +148,6 @@ public class Screen5 extends AppCompatActivity {
                 REQUEST_TAKE_PHOTO =0;
             }
         });
-
     }
 
     private boolean hasImage(@NonNull ImageView view) {
@@ -174,8 +157,29 @@ public class Screen5 extends AppCompatActivity {
         if (hasImage && (drawable instanceof BitmapDrawable)) {
             hasImage = ((BitmapDrawable)drawable).getBitmap() != null;
         }
-
         return hasImage;
+    }
+
+    private void sendEmail(String email, String subject, String body){
+        final Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setType("text/plain");
+
+        // Add the recipients
+        emailIntent.putExtra(Intent.EXTRA_EMAIL,
+                new String[] { email });
+
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+
+        emailIntent.putExtra(Intent.EXTRA_TEXT, body);
+
+        // Add the attachment by specifying a reference to our
+        // ContentProvider
+        // and the specific file of interest
+        emailIntent.putExtra(
+                Intent.EXTRA_STREAM,
+                Uri.parse("content://com.example.android.FileProvider/match_results/"+path));
+        startActivity(emailIntent);
     }
 
     private File createImageFile() throws IOException {

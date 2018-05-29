@@ -22,11 +22,12 @@ public class PDFGenerator{
     String LOG_TAG;
 
 
-    public void createPDF(String front, String back, String matchcode,
+    public String createPDF(String front, String back, String matchcode,
                           String time, String group, String teamname1,
                           String teamname2, String lineup1, String lineup2) throws FileNotFoundException, DocumentException, IOException{
 
         String[] IMAGES = {front, back};
+        String[] SIGNATURES = {"/storage/emulated/0/Signature_team_1.png", "/storage/emulated/0/Signature_team_2.png"};
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
@@ -38,7 +39,8 @@ public class PDFGenerator{
             Log.i(LOG_TAG, "PDF DIRECTORY CREATED");
         }
 
-        File pdfFile = new File(pdfFolder, "/MATCH_"+matchcode+"-"+date+"-"+time+"-"+group+".pdf");
+        String fileString = "/MATCH_"+matchcode+"-"+date+"-"+time+"-"+group+".pdf";
+        File pdfFile = new File(pdfFolder, fileString);
         FileOutputStream outputStream = new FileOutputStream(pdfFile);
 
 
@@ -47,16 +49,21 @@ public class PDFGenerator{
         PdfWriter.getInstance(document, outputStream);
 
         document.open();
-        //TODO GET SIGNATURE
-        Paragraph h1 = new Paragraph(teamname1,FontFactory.getFont(FontFactory.HELVETICA_BOLD, 100));
-        Paragraph h2 = new Paragraph(teamname2,FontFactory.getFont(FontFactory.HELVETICA_BOLD, 100));
-        Paragraph p = new Paragraph(lineup1,FontFactory.getFont(FontFactory.HELVETICA, 50));
-        Paragraph p2 = new Paragraph(lineup2,FontFactory.getFont(FontFactory.HELVETICA, 50));
+
+        Paragraph h1 = new Paragraph(teamname1,FontFactory.getFont(FontFactory.HELVETICA_BOLD, 150));
+        Paragraph h2 = new Paragraph(teamname2,FontFactory.getFont(FontFactory.HELVETICA_BOLD, 150));
+        Paragraph p = new Paragraph(lineup1,FontFactory.getFont(FontFactory.HELVETICA, 75));
+        Paragraph p2 = new Paragraph(lineup2,FontFactory.getFont(FontFactory.HELVETICA, 75));
+        Image img1 = Image.getInstance(SIGNATURES[0]);
+        Image img2 = Image.getInstance(SIGNATURES[1]);
 
         document.add(h1);
         document.add(p);
+        document.add(img1);
         document.add(h2);
         document.add(p2);
+        document.add(img2);
+
         for (String image : IMAGES) {
             img = Image.getInstance(image);
             //document.setPageSize(img);
@@ -69,5 +76,6 @@ public class PDFGenerator{
         }
 
         document.close();
+        return fileString;
     }
 }
