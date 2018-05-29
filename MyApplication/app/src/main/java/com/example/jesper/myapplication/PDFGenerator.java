@@ -21,7 +21,12 @@ import java.util.Date;
 public class PDFGenerator{
     String LOG_TAG;
 
-
+    /**
+    *PDF Generator
+    * Pass parameters front, back which are locations of front picture and back picture.
+    * aswell as information and the match
+    * matchcode, time, group, teamname1, teamname2, lineup1, lineup2.
+    */
     public String createPDF(String front, String back, String matchcode,
                           String time, String group, String teamname1,
                           String teamname2, String lineup1, String lineup2) throws FileNotFoundException, DocumentException, IOException{
@@ -32,13 +37,15 @@ public class PDFGenerator{
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String date = df.format(c);
-
+        
+        // Set directory for where to store the PDF. Create it if it doesn't exist.
         File pdfFolder = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Match_Results");
         if(!pdfFolder.exists()){
             pdfFolder.mkdirs();
             Log.i(LOG_TAG, "PDF DIRECTORY CREATED");
         }
-
+        
+        // Full path of the PDF-file, opening up OutputStream and document creation.
         String fileString = "/MATCH_"+matchcode+"-"+date+"-"+time+"-"+group+".pdf";
         File pdfFile = new File(pdfFolder, fileString);
         FileOutputStream outputStream = new FileOutputStream(pdfFile);
@@ -49,21 +56,24 @@ public class PDFGenerator{
         PdfWriter.getInstance(document, outputStream);
 
         document.open();
-
+        
+        // tyling
         Paragraph h1 = new Paragraph(teamname1,FontFactory.getFont(FontFactory.HELVETICA_BOLD, 150));
         Paragraph h2 = new Paragraph(teamname2,FontFactory.getFont(FontFactory.HELVETICA_BOLD, 150));
         Paragraph p = new Paragraph(lineup1,FontFactory.getFont(FontFactory.HELVETICA, 75));
         Paragraph p2 = new Paragraph(lineup2,FontFactory.getFont(FontFactory.HELVETICA, 75));
         Image img1 = Image.getInstance(SIGNATURES[0]);
         Image img2 = Image.getInstance(SIGNATURES[1]);
-
+        
+        // Adding the essential information to pdfdocument.
         document.add(h1);
         document.add(p);
         document.add(img1);
         document.add(h2);
         document.add(p2);
         document.add(img2);
-
+        
+        //adding images, scaling to fit A4 pagesize.
         for (String image : IMAGES) {
             img = Image.getInstance(image);
             //document.setPageSize(img);
