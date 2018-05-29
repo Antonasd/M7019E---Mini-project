@@ -1,0 +1,167 @@
+package com.example.jesper.myapplication;
+
+import android.util.Log;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class Parser {
+    private Document doc = null;
+    boolean done = false;
+
+    private String getURL (String year, String value, boolean forTeam) {
+        if(forTeam) {
+            return "http://teamplaycup.se/cup/?games&home=kurirenspelen/" + year + "&scope=all&" + value + "&field=";
+        } else {
+            return "http://teamplaycup.se/cup/?overviewgroup&home=kurirenspelen/" + year + "&scope=" + value;
+        }
+    }
+
+    public ArrayList<ArrayList<String>> getMatches(final String year, final String arena) throws IOException {
+
+        Thread getThread = new Thread() {
+            public void run() {
+                doc = null;
+
+                try {
+                    doc = Jsoup.connect(getURL(year, arena, true)).get();
+                    done = true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        };
+        getThread.start();
+
+        while (!done) {
+            try {
+                Thread.sleep(20);
+            }
+            catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+
+        done = false;
+
+        Elements titles = doc.getElementsByTag("h4");
+        Elements tables = doc.getElementsByTag("tbody");
+
+        ArrayList<ArrayList<String>> games = new ArrayList<ArrayList<String>>();
+
+        int index = 0;
+        for (Element title : titles) {
+
+            Elements curGames = tables.get(index).children();
+
+            for (Element curGame : curGames) {
+                ArrayList<String> match = new ArrayList<String>();
+                Elements attr = curGame.children();
+
+                match.add(title.text()); //Date
+                match.add(attr.get(0).children().get(0).text()); //Match number
+                match.add(attr.get(1).children().get(0).text()); //Group
+                match.add(attr.get(2).text()); //Time
+                match.add(attr.get(3).children().get(0).text()); //Team 1 name
+                match.add(attr.get(3).children().get(0).attr("href")); //Team 1 link
+                match.add(attr.get(3).children().get(1).text()); //Team 2 name
+                match.add(attr.get(3).children().get(1).attr("href")); //Team 2 link
+
+                games.add(match);
+            }
+
+
+
+            index++;
+        }
+
+        return games;
+    }
+
+    public ArrayList<ArrayList<String>> getPlayers(final String url) throws IOException {
+
+        Thread getThread = new Thread() {
+            public void run() {
+                doc = null;
+
+                try {
+                    doc = Jsoup.connect(url).maxBodySize(Integer.MAX_VALUE).get();
+                    done = true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        };
+        getThread.start();
+
+        while (!done) {
+            try {
+                Thread.sleep(20);
+            }
+            catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+
+        done=false;
+
+        Element playersHtml = doc.getElementsByTag("tbody").get(1);
+        ArrayList<ArrayList<String>> players = new ArrayList<ArrayList<String>>();
+
+        for(Element player : playersHtml.children()){
+            ArrayList<String> newPlayer = new ArrayList<>();
+            newPlayer.add(player.child(0).text());
+            newPlayer.add(player.child(1).text());
+            players.add(newPlayer);
+        }
+
+        return players;
+    }
+
+    public String getAge(final String year, final String group) throws IOException {
+
+        Thread getThread = new Thread() {
+            public void run() {
+                doc = null;
+
+                try {
+                    doc = Jsoup.connect(getURL(year, group, false)).get();
+                    done = true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        };
+        getThread.start();
+
+        while (!done) {
+            try {
+                Thread.sleep(20);
+            }
+            catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+        Log.v("FREE", "Free from while\n");
+        done = false;
+
+        String groupString = doc.getElementsByTag("h2").get(0).text();
+
+        String age;
+        if(groupString.substring(0,1).equals("P")) {
+            age = groupString.substring(7,9);
+        } else {
+            age = groupString.substring(8,10);
+        }
+
+        return age;
+    }
+}
