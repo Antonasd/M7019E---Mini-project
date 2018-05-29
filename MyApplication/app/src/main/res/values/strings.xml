@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Android Mini-Project</string>
+    <string name="action_settings">Settings</string>
+    <string name="too_many_old_players">A maximum of 2 older players are allowed to play.</string>
+    <string name="email">Finalize match and send report</string>
+</resources>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".Screen4">
+
+    <LinearLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="Configure team lineup"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <CheckBox style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+            android:id="@+id/admin_override"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right|center"
+            android:layoutDirection="rtl"
+            android:text="Admin Override"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:layout_weight="0.1" />
+
+        <!--<Button
+            style="@style/Widget.AppCompat.Button"
+            android:id="@+id/admin_access"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="Admin access" />-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/player_list_columns"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/top_layout"
+        android:layout_weight="0.5"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:text="Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:text="Age"
+            android:layout_marginEnd="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/player_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/background_border"
+        android:layout_below="@id/player_list_columns"
+        android:layout_weight="3">
+
+        <TableLayout
+            android:id="@+id/player_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+
+        </TableLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/signature_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/player_scroll"
+        android:layout_weight="0.5"
+        android:layout_marginStart="10dp"
+        android:gravity="center_vertical"
+        android:text="Signature below (double tap to clear)"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <com.github.gcacace.signaturepad.views.SignaturePad xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/signature_pad"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_below="@id/signature_text"
+        android:layout_weight="3"
+        android:background="#FFFFFF"
+        app:clearOnDoubleClick="true"
+        app:penColor="@android:color/black" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@id/signature_pad"
+        android:layout_weight="0.85"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/confirmation_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/player_list"
+            android:layout_weight="1"
+            android:text="Submit" />
+
+        <Button
+            style="@style/Widget.AppCompat.Button"
+            android:id="@+id/confirm_signature"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Confirm Signature" />
+
+    </LinearLayout>
+</LinearLayout>
+
