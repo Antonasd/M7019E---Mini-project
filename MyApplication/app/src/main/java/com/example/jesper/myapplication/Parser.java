@@ -23,7 +23,7 @@ public class Parser {
         }
     }
 
-	//Get all matches for the specified year and field/arena, used in screen 3.
+    //Get all matches for the specified year and field/arena, used in screen 3.
     public ArrayList<ArrayList<String>> getMatches(final String year, final String arena) throws IOException {
 		
 		//Fetching from a URL shouldn't be run in the main thread.
@@ -59,7 +59,7 @@ public class Parser {
         ArrayList<ArrayList<String>> games = new ArrayList<ArrayList<String>>();
 
         int index = 0;
-		//There is one header with a corresponding table for each day of the season, let's loop through them and get every match.
+	//There is one header with a corresponding table for each day of the season, let's loop through them and get every match.
         for (Element title : titles) {
 
             Elements curGames = tables.get(index).children();
@@ -88,7 +88,7 @@ public class Parser {
         return games;
     }
 
-	//Get a list of all the players in a specific match, used in screen 4
+   //Get a list of all the players in a specific match, used in screen 4
     public ArrayList<ArrayList<String>> getPlayers(final String url) throws IOException {
 
         Thread getThread = new Thread() {
@@ -131,7 +131,7 @@ public class Parser {
         return players;
     }
 
-	//Get the year of brith for a specific group, used to determine if players are overaged.
+    //Get the year of brith for a specific group, used to determine if players are overaged.
     public String getAge(final String year, final String group) throws IOException {
 
         Thread getThread = new Thread() {
@@ -162,7 +162,7 @@ public class Parser {
         String groupString = doc.getElementsByTag("h2").get(0).text();
 
         String age;
-		//Use the first letter to determine if the group is of boys or girls, then get the year of birth.
+	//Use the first letter to determine if the group is of boys or girls, then get the year of birth.
         if(groupString.substring(0,1).equals("P")) {
             age = groupString.substring(7,9);
         } else {
