@@ -85,6 +85,7 @@ public class Screen5 extends AppCompatActivity {
         final ArrayList<Player> lineup2 = (ArrayList<Player>) getIntent().getSerializableExtra("LINEUP2");
         final PDFGenerator pdfGenerator = new PDFGenerator();
 
+        //Convert ArrayList<Player> lineups to a "printable" String for the pdfGenerator
         for (Player p : lineup1){
             players_team1 += (p.name + "\n");
         }
