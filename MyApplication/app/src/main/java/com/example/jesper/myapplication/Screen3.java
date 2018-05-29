@@ -50,6 +50,8 @@ public class Screen3 extends AppCompatActivity {
         setContentView(R.layout.activity_screen3);
 
         TextView header = (TextView) findViewById(R.id.header);
+        
+        //Get data from Screen 1 & 2
         final String field = getIntent().getStringExtra("FIELD_SELECTED");
         final String email = getIntent().getStringExtra("ADMIN_EMAIL");
         final String admin_override = getIntent().getStringExtra("ADMIN_OVERRIDE");
@@ -59,6 +61,7 @@ public class Screen3 extends AppCompatActivity {
 
         header.setText("All matches on field " + field);
 
+        //Add listeners to the two register buttons and send through the parsed data to screen 4
         registerTeam1 = findViewById(R.id.button1);
         registerTeam1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,8 +92,10 @@ public class Screen3 extends AppCompatActivity {
 
         hmap = new HashMap<String, String>();
 
+        //Set OnClick listeners to every table row
         setListeners();
 
+        //Send through the two lineups received from Screen 4 and go to Screen 5
         submitResults = (Button) findViewById(R.id.button3);
         submitResults.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +117,8 @@ public class Screen3 extends AppCompatActivity {
         submitResults.setEnabled(false);
         tl = findViewById(R.id.match_table);
 
+        //Parse through all matches and add a table row for each match with 
+        //match number, group, time, team1name, team1url, team2name, team2url
         parser = new Parser();
         try {
             for (ArrayList<String> matches : parser.getMatches(year_last2, parseString)) {
@@ -127,20 +134,29 @@ public class Screen3 extends AppCompatActivity {
         matchSelectListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Get the table row's text views so we can get the data from them
                 TextView n = (TextView)(((ViewGroup)view).getChildAt(0));
                 TextView g = (TextView)(((ViewGroup)view).getChildAt(1));
                 TextView t = (TextView)(((ViewGroup)view).getChildAt(2));
                 CheckedTextView checkedText = (CheckedTextView) (((ViewGroup)view).getChildAt(3));
+                
+                //If no table row has been clicked yet on the screen, select the first one clicked
                 if(previouslyChecked == null){
                     previouslyChecked = (TableRow) view;
                     checkedText.setChecked(true);
                     checkedText.setCheckMarkDrawable(R.drawable.ic_checkmark);
                     String teamString = (String) checkedText.getText();
+                    
+                    //Split the text from the teams textview into 2 separate team strings
                     String[] splitString = teamString.split("\n");
                     team1 = splitString[0];
                     team2 = splitString[1];
+                    
+                    //Update the buttons to show team names
                     registerTeam1.setText("Register" + "\n" + team1);
                     registerTeam2.setText("Register" + "\n" + team2);
+                    
+                    //Get the data of the currently selected match
                     matchcode = (String) n.getText();
                     group = (String) g.getText();
                     time = (String) t.getText();
@@ -148,24 +164,35 @@ public class Screen3 extends AppCompatActivity {
                     url2 = hmap.get(team2);
                     registerTeam1.setEnabled(true);
                     registerTeam2.setEnabled(true);
+                    
+                    //Remove obtained screen4 data if button is clicked again (eg. match switches after 1 team is registered)
                     team1Checked = false;
                     team2Checked = false;
                     team1Lineup = null;
                     team2Lineup = null;
                 } else {
+                    //Unselect the previously selected table row
                     CheckedTextView previous = (CheckedTextView) previouslyChecked.getChildAt(3);
                     previous.setChecked(false);
                     previous.setCheckMarkDrawable(0);
                     previouslyChecked = (TableRow) view;
+                    
+                    //Select the newly clicked row
                     CheckedTextView newCheck = (CheckedTextView) previouslyChecked.getChildAt(3);
                     newCheck.setChecked(true);
                     newCheck.setCheckMarkDrawable(R.drawable.ic_checkmark);
                     String teamString = (String) newCheck.getText();
+                    
+                    //Split the text from the teams textview into 2 separate team strings
                     String[] splitString = teamString.split("\n");
                     team1 = splitString[0];
                     team2 = splitString[1];
+                    
+                    //Update the buttons to show team names
                     registerTeam1.setText("Register" + "\n" + team1);
                     registerTeam2.setText("Register" + "\n" + team2);
+                    
+                    //Get the data of the currently selected match
                     matchcode = (String) n.getText();
                     group = (String) g.getText();
                     time = (String) t.getText();
@@ -173,6 +200,8 @@ public class Screen3 extends AppCompatActivity {
                     url2 = hmap.get(team2);
                     registerTeam1.setEnabled(true);
                     registerTeam2.setEnabled(true);
+                    
+                    //Remove obtained screen4 data if button is clicked again (eg. match switches after 1 team is registered)
                     team1Checked = false;
                     team2Checked = false;
                     team1Lineup = null;
@@ -189,6 +218,7 @@ public class Screen3 extends AppCompatActivity {
         TextView textTime = new TextView(this);
         CheckedTextView textTeams = new CheckedTextView(this);
 
+        //Put teamnames and team urls into a hashmap to map parse urls to team names later
         hmap.put(team1name, team1url);
         hmap.put(team2name, team2url);
 
@@ -198,6 +228,7 @@ public class Screen3 extends AppCompatActivity {
         newMatch.addView(textTime);
         newMatch.addView(textTeams);
 
+        //Layout parameters to show it as (NR | Group | Time | Teams)
         textNumber.setText(number);
         textNumber.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         textNumber.setLayoutParams(new TableRow.LayoutParams(0,TableRow.LayoutParams.MATCH_PARENT, 0.2f));
@@ -215,15 +246,19 @@ public class Screen3 extends AppCompatActivity {
         textTeams.setGravity(Gravity.CENTER_VERTICAL);
         textTeams.setLayoutParams(new TableRow.LayoutParams(0,TableRow.LayoutParams.MATCH_PARENT,0.9f));
 
+        //Add an OnClick listener to each table row and add it to the ScrollView
         newMatch.setOnClickListener(matchSelectListener);
         tl.addView(newMatch);
     }
 
+    //Convert dp to px
     private int dpToPx(int dp) {
         float density = this.getResources().getDisplayMetrics().density;
         return Math.round((float) dp * density);
     }
 
+    //If result code is from the two buttons, read the Team string to identify which button was pressed
+    //and update lineup of the pressed button
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
