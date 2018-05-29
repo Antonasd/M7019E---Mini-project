@@ -1,0 +1,276 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:2:1-71:12
+INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:2:1-71:12
+INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:2:1-71:12
+INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:2:1-71:12
+MERGED from [com.android.support:design:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\596938fa922869d129a239387ceb1964\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:appcompat-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0.aar\3f31de8d2ddee6fa6337500169bb7653\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\af28ef702c3b7e8e8e5cdad8185cbc6b\AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.gcacace:signature-pad:1.2.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\signature-pad-1.2.1.aar\e9fe85ad425085970b3239c32fbe86dc\AndroidManifest.xml:2:1-13:12
+MERGED from [com.android.support:animated-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0.aar\7781872bbe5e8d2034c5a06433262ae5\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0.aar\2f139a820056c352bf0d823b1785b53d\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:recyclerview-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0.aar\304542597af0728954a97e958ba7bd6f\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:transition:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\transition-26.0.0.aar\8435800341fed079d2826fed63c9e08b\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.databinding:adapters:1.2.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\adapters-1.2.1.aar\d6c2e914de25eb2690d13ac956ff7bdd\AndroidManifest.xml:17:1-26:12
+MERGED from [com.android.databinding:library:1.2.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\library-1.2.1.aar\ca875e12b07f037deb07d5aaf0b439aa\AndroidManifest.xml:17:1-26:12
+MERGED from [com.android.support:support-v4:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0.aar\bdda30e7b4466f947be22876fb7ed5a6\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0.aar\90e49d88f81d55f9aef4d638fe6f8a35\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0.aar\b3f656b8f7acf5dd418f82b9e8f70f35\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0.aar\0a4293b5b9988aab61539b997f405de6\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0.aar\151fc54b146df229f7c278ed4c343483\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0.aar\8e4209b62f94e20e3c8b5478026075d7\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:multidex:1.0.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\multidex-1.0.1.aar\a663cb5e8d7b0459a645228dcbd1d557\AndroidManifest.xml:16:1-19:12
+INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:2:1-71:12
+INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:2:1-71:12
+INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:2:1-71:12
+	package
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:3:5-47
+		INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:2:1-71:12
+		INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:2:1-71:12
+		INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.CAMERA
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:5:5-65
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:5:22-62
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:6:5-80
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:6:22-77
+uses-permission#android.permission.READ_INTERNAL_STORAGE
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:7:5-80
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:7:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:8:5-81
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:8:22-78
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:9:5-67
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:9:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:10:5-79
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:10:22-76
+uses-feature#android.hardware.camera
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:11:5-12:31
+	android:required
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:12:5-28
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:11:19-57
+application
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:13:5-69:19
+MERGED from [com.android.support:design:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\596938fa922869d129a239387ceb1964\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:design:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\596938fa922869d129a239387ceb1964\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0.aar\3f31de8d2ddee6fa6337500169bb7653\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0.aar\3f31de8d2ddee6fa6337500169bb7653\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\af28ef702c3b7e8e8e5cdad8185cbc6b\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\af28ef702c3b7e8e8e5cdad8185cbc6b\AndroidManifest.xml:9:5-20
+MERGED from [com.github.gcacace:signature-pad:1.2.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\signature-pad-1.2.1.aar\e9fe85ad425085970b3239c32fbe86dc\AndroidManifest.xml:11:5-20
+MERGED from [com.github.gcacace:signature-pad:1.2.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\signature-pad-1.2.1.aar\e9fe85ad425085970b3239c32fbe86dc\AndroidManifest.xml:11:5-20
+MERGED from [com.android.support:animated-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0.aar\7781872bbe5e8d2034c5a06433262ae5\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0.aar\7781872bbe5e8d2034c5a06433262ae5\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0.aar\2f139a820056c352bf0d823b1785b53d\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0.aar\2f139a820056c352bf0d823b1785b53d\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:recyclerview-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0.aar\304542597af0728954a97e958ba7bd6f\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:recyclerview-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0.aar\304542597af0728954a97e958ba7bd6f\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\transition-26.0.0.aar\8435800341fed079d2826fed63c9e08b\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\transition-26.0.0.aar\8435800341fed079d2826fed63c9e08b\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0.aar\bdda30e7b4466f947be22876fb7ed5a6\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0.aar\bdda30e7b4466f947be22876fb7ed5a6\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0.aar\90e49d88f81d55f9aef4d638fe6f8a35\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0.aar\90e49d88f81d55f9aef4d638fe6f8a35\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0.aar\b3f656b8f7acf5dd418f82b9e8f70f35\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0.aar\b3f656b8f7acf5dd418f82b9e8f70f35\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0.aar\0a4293b5b9988aab61539b997f405de6\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0.aar\0a4293b5b9988aab61539b997f405de6\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0.aar\151fc54b146df229f7c278ed4c343483\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0.aar\151fc54b146df229f7c278ed4c343483\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0.aar\8e4209b62f94e20e3c8b5478026075d7\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0.aar\8e4209b62f94e20e3c8b5478026075d7\AndroidManifest.xml:25:5-29:19
+	android:supportsRtl
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:18:9-35
+	android:label
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:16:9-41
+	android:roundIcon
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:17:9-48
+	android:icon
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:15:9-43
+	android:allowBackup
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:14:9-35
+	android:theme
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:19:9-40
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:20:9-28
+provider#com.example.jesper.myapplication.FileProvider
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:21:9-26:20
+	android:grantUriPermissions
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:25:13-47
+	android:enabled
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:23:13-35
+	android:authorities
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:22:13-80
+	android:exported
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:24:13-37
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:21:19-46
+provider#android.support.v4.content.FileProvider
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:27:9-35:20
+	android:grantUriPermissions
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:31:13-47
+	android:authorities
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:29:13-67
+	android:exported
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:28:13-67
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:32:13-34:57
+	android:resource
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:34:17-55
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:33:17-67
+activity#com.example.jesper.myapplication.Splash
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:36:9-43:20
+	android:theme
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:38:13-47
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:37:13-35
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:39:13-42:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:40:17-69
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:40:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:41:17-77
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:41:27-74
+activity#com.example.jesper.myapplication.Screen1
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:44:9-48:20
+	android:label
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:46:13-45
+	android:theme
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:47:13-56
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:45:13-36
+activity#com.example.jesper.myapplication.Screen2
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:49:9-53:20
+	android:label
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:51:13-45
+	android:theme
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:52:13-56
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:50:13-36
+activity#com.example.jesper.myapplication.Screen3
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:54:9-58:20
+	android:label
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:56:13-45
+	android:theme
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:57:13-56
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:55:13-36
+activity#com.example.jesper.myapplication.Screen4
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:59:9-63:20
+	android:label
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:61:13-45
+	android:theme
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:62:13-56
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:60:13-36
+activity#com.example.jesper.myapplication.Screen5
+ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:64:9-68:20
+	android:label
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:66:13-45
+	android:theme
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:67:13-56
+	android:name
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml:65:13-36
+uses-sdk
+INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:design:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\596938fa922869d129a239387ceb1964\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\596938fa922869d129a239387ceb1964\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0.aar\3f31de8d2ddee6fa6337500169bb7653\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0.aar\3f31de8d2ddee6fa6337500169bb7653\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\af28ef702c3b7e8e8e5cdad8185cbc6b\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\af28ef702c3b7e8e8e5cdad8185cbc6b\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.gcacace:signature-pad:1.2.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\signature-pad-1.2.1.aar\e9fe85ad425085970b3239c32fbe86dc\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.gcacace:signature-pad:1.2.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\signature-pad-1.2.1.aar\e9fe85ad425085970b3239c32fbe86dc\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:animated-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0.aar\7781872bbe5e8d2034c5a06433262ae5\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0.aar\7781872bbe5e8d2034c5a06433262ae5\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0.aar\2f139a820056c352bf0d823b1785b53d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0.aar\2f139a820056c352bf0d823b1785b53d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0.aar\304542597af0728954a97e958ba7bd6f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0.aar\304542597af0728954a97e958ba7bd6f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\transition-26.0.0.aar\8435800341fed079d2826fed63c9e08b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\transition-26.0.0.aar\8435800341fed079d2826fed63c9e08b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.databinding:adapters:1.2.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\adapters-1.2.1.aar\d6c2e914de25eb2690d13ac956ff7bdd\AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.databinding:adapters:1.2.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\adapters-1.2.1.aar\d6c2e914de25eb2690d13ac956ff7bdd\AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.databinding:library:1.2.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\library-1.2.1.aar\ca875e12b07f037deb07d5aaf0b439aa\AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.databinding:library:1.2.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\library-1.2.1.aar\ca875e12b07f037deb07d5aaf0b439aa\AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:support-v4:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0.aar\bdda30e7b4466f947be22876fb7ed5a6\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0.aar\bdda30e7b4466f947be22876fb7ed5a6\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0.aar\90e49d88f81d55f9aef4d638fe6f8a35\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0.aar\90e49d88f81d55f9aef4d638fe6f8a35\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-ui:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0.aar\b3f656b8f7acf5dd418f82b9e8f70f35\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0.aar\b3f656b8f7acf5dd418f82b9e8f70f35\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-media-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0.aar\0a4293b5b9988aab61539b997f405de6\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0.aar\0a4293b5b9988aab61539b997f405de6\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0.aar\151fc54b146df229f7c278ed4c343483\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0.aar\151fc54b146df229f7c278ed4c343483\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0.aar\8e4209b62f94e20e3c8b5478026075d7\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0.aar\8e4209b62f94e20e3c8b5478026075d7\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:multidex:1.0.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\multidex-1.0.1.aar\a663cb5e8d7b0459a645228dcbd1d557\AndroidManifest.xml:18:5-42
+MERGED from [com.android.support:multidex:1.0.1] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\multidex-1.0.1.aar\a663cb5e8d7b0459a645228dcbd1d557\AndroidManifest.xml:18:5-42
+INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\596938fa922869d129a239387ceb1964\AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Jesper\Desktop\CODE_CURRENT\MyApplication\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\596938fa922869d129a239387ceb1964\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0.aar\3f31de8d2ddee6fa6337500169bb7653\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0.aar\3f31de8d2ddee6fa6337500169bb7653\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:animated-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0.aar\7781872bbe5e8d2034c5a06433262ae5\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.0.0.aar\7781872bbe5e8d2034c5a06433262ae5\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0.aar\2f139a820056c352bf0d823b1785b53d\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.0.0.aar\2f139a820056c352bf0d823b1785b53d\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:recyclerview-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0.aar\304542597af0728954a97e958ba7bd6f\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:recyclerview-v7:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.0.0.aar\304542597af0728954a97e958ba7bd6f\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\transition-26.0.0.aar\8435800341fed079d2826fed63c9e08b\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\transition-26.0.0.aar\8435800341fed079d2826fed63c9e08b\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-v4:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0.aar\bdda30e7b4466f947be22876fb7ed5a6\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v4:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-v4-26.0.0.aar\bdda30e7b4466f947be22876fb7ed5a6\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0.aar\90e49d88f81d55f9aef4d638fe6f8a35\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-fragment-26.0.0.aar\90e49d88f81d55f9aef4d638fe6f8a35\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0.aar\b3f656b8f7acf5dd418f82b9e8f70f35\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.0.0.aar\b3f656b8f7acf5dd418f82b9e8f70f35\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0.aar\0a4293b5b9988aab61539b997f405de6\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.0.0.aar\0a4293b5b9988aab61539b997f405de6\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0.aar\151fc54b146df229f7c278ed4c343483\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0.aar\151fc54b146df229f7c278ed4c343483\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0.aar\8e4209b62f94e20e3c8b5478026075d7\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0.aar\8e4209b62f94e20e3c8b5478026075d7\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:design:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\596938fa922869d129a239387ceb1964\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:design:26.0.0] C:\Users\Jesper\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\596938fa922869d129a239387ceb1964\AndroidManifest.xml:27:13-51
