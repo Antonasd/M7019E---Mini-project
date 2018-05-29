@@ -57,7 +57,7 @@ public class PDFGenerator{
 
         document.open();
         
-        // tyling
+        // Filling and Styling the team lineups
         Paragraph h1 = new Paragraph(teamname1,FontFactory.getFont(FontFactory.HELVETICA_BOLD, 150));
         Paragraph h2 = new Paragraph(teamname2,FontFactory.getFont(FontFactory.HELVETICA_BOLD, 150));
         Paragraph p = new Paragraph(lineup1,FontFactory.getFont(FontFactory.HELVETICA, 75));
@@ -86,6 +86,8 @@ public class PDFGenerator{
         }
 
         document.close();
+        
+        //Return file path for PDF for Screen5's email intent
         return fileString;
     }
 }
