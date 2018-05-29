@@ -73,7 +73,8 @@ public class Screen5 extends AppCompatActivity {
 
         requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA},1);
         setContentView(R.layout.activity_screen5);
-
+        
+        //Getting necessary data from intent, initializing PDF generator.
         final String matchcode = getIntent().getStringExtra("MATCH_CODE");
         final String time = getIntent().getStringExtra("TIME");
         final String group = getIntent().getStringExtra("GROUP");
@@ -149,7 +150,8 @@ public class Screen5 extends AppCompatActivity {
             }
         });
     }
-
+    
+    //Not used, but it's for checking whether ImageView contains an Image or not.
     private boolean hasImage(@NonNull ImageView view) {
         Drawable drawable = view.getDrawable();
         boolean hasImage = (drawable != null);
@@ -159,7 +161,8 @@ public class Screen5 extends AppCompatActivity {
         }
         return hasImage;
     }
-
+    
+    //Send Email intent.
     private void sendEmail(String email, String subject, String body){
         final Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
@@ -181,7 +184,8 @@ public class Screen5 extends AppCompatActivity {
                 Uri.parse("content://com.example.android.FileProvider/match_results/"+path));
         startActivity(emailIntent);
     }
-
+    
+    
     private File createImageFile() throws IOException {
         // Create an image file name
 
@@ -189,7 +193,9 @@ public class Screen5 extends AppCompatActivity {
         /**if (!storageDir.exists()){
          storageDir.mkdirs();
          }*/
-
+        
+        
+        //One for for front and one for back picture.
         if(scanFront){
             fileString = "front";
             outFileFront = File.createTempFile(
@@ -219,7 +225,8 @@ public class Screen5 extends AppCompatActivity {
         scanBack = false;
         return outFileBack;
     }
-
+    
+    //Camera Intent. Take picture, save image using createImageFile().
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -244,16 +251,13 @@ public class Screen5 extends AppCompatActivity {
 
     }
 
-
+    // onActivityResult for after taking a picture, look whether it was a
+    // front or back picture and add accordingly to ImageView. Some scaling and stuff
+    // in order to fit ImageView.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //Handling for the front image
         if (requestCode == 1) {
-            /**img0 = findViewById(R.id.imageView4);
-             Bundle extras = data.getExtras();
-             Bitmap imageBitmap = (Bitmap) extras.get("data");
-             img0.setImageBitmap(imageBitmap);*/
-            ///
             // Get the dimensions of the View
             int targetW = img0.getWidth();
             int targetH = img0.getHeight();
@@ -287,12 +291,6 @@ public class Screen5 extends AppCompatActivity {
         }
         // Handling for back image
         if (requestCode == 0) {
-            /** img1 = findViewById(R.id.imageView3);
-             Bundle extras = data.getExtras();
-             Bitmap imageBitmap = (Bitmap) extras.get("data");
-             img1.setImageBitmap(imageBitmap);*/
-
-
             // Get the dimensions of the View
             int targetW = img1.getWidth();
             int targetH = img1.getHeight();
