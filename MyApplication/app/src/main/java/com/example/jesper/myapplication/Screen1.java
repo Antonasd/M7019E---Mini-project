@@ -32,11 +32,14 @@ public class Screen1 extends AppCompatActivity {
     boolean dateOK = false;
     String adminOverride = "false";
 
-
-
+    @android.support.annotation.RequiresApi(api=android.os.Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Request Storage and Camera permissions, for Screen 4 and 5 respectively
+        requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA},1);
+        
         setContentView(R.layout.activity_screen1);
         dateField = (EditText) findViewById(R.id.date);
         dateLayout = (TextInputLayout) findViewById(R.id.textinputdate);
