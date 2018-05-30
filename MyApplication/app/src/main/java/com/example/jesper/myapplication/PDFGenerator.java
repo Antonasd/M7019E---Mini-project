@@ -32,7 +32,8 @@ public class PDFGenerator{
                           String teamname2, String lineup1, String lineup2) throws FileNotFoundException, DocumentException, IOException{
 
         String[] IMAGES = {front, back};
-        String[] SIGNATURES = {"/storage/emulated/0/Signature_team_1.png", "/storage/emulated/0/Signature_team_2.png"};
+        String[] SIGNATURES = {Environment.getExternalStorageDirectory().getAbsolutePath() + "/Signature_team_1.png",
+                               Environment.getExternalStorageDirectory().getAbsolutePath() + "/Signature_team_2.png"};
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
