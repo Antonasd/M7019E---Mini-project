@@ -1,10 +1,13 @@
 package com.example.jesper.myapplication;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -29,7 +32,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Screen4 extends AppCompatActivity {
-    public static final int maxPlayers = 11;
 
     private CheckBox adminButton;
     private Button confirmButton;
@@ -85,21 +87,13 @@ public class Screen4 extends AppCompatActivity {
         }
 
         parser = new Parser();
-        try{teamYear = Integer.parseInt(parser.getAge(year_last2, group));}
-        catch(IOException e){e.printStackTrace(); }
-        try {
-            for (ArrayList<String> player : parser.getPlayers(url)) {
-                addPlayer(player.get(0), player.get(1));
-            }
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
 
+        fetchData(year_last2);
         //requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO},
         //      1);
     }
 
+    //Creates listeners used by different buttons etc.
     private void setListeners() {
         adminButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +104,7 @@ public class Screen4 extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
+                //If the players selected are valid send the selected players back otherwise inform the player of the invalid selection.
                 if(checkValidity()) {
                     Intent data = new Intent();
                     data.putExtra("PlayerList", selectedPlayers);
@@ -142,6 +137,8 @@ public class Screen4 extends AppCompatActivity {
                 confirmButton.setEnabled(true);
             }
         });
+
+
         signaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
             @Override
             public void onStartSigning() {
@@ -162,6 +159,7 @@ public class Screen4 extends AppCompatActivity {
             }
         });
 
+        //Checks/un-checks player in the UI and adds and removes selected players.
         playerSelectListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -181,6 +179,7 @@ public class Screen4 extends AppCompatActivity {
         };
     }
 
+    //Adds a player to the UI.
     private void addPlayer(String name, String birthday) {
         TableRow newPlayer = new TableRow(this);
         TextView textBirthday = new TextView(this);
@@ -189,12 +188,12 @@ public class Screen4 extends AppCompatActivity {
         newPlayer.setMinimumHeight(dpToPx(50));
         newPlayer.addView(textName);
         newPlayer.addView(textBirthday);
+        newPlayer.setOnClickListener(playerSelectListener);
 
         textName.setText(name);
         textName.setChecked(false);
         textName.setGravity(Gravity.CENTER_VERTICAL);
         textName.setLayoutParams(new TableRow.LayoutParams(0,TableRow.LayoutParams.MATCH_PARENT, 1.0f));
-        newPlayer.setOnClickListener(playerSelectListener);
 
         textBirthday.setText(birthday);
         textBirthday.setGravity(android.view.Gravity.RIGHT | Gravity.CENTER_VERTICAL);
@@ -203,7 +202,7 @@ public class Screen4 extends AppCompatActivity {
         playersLayout.addView(newPlayer);
     }
 
-
+    //Checks the validity of the currently selected players.
     private boolean checkValidity() {
         int nOveraged = 0;
         if(adminButton.isChecked()){
@@ -220,6 +219,7 @@ public class Screen4 extends AppCompatActivity {
         return true;
     }
 
+    //Returns a Player object representing a player in the UI.
     private Player getPlayerRowData(TableRow playerRow) {
         CheckedTextView name = (CheckedTextView) playerRow.getChildAt(0);
         TextView birthDay = (TextView) playerRow.getChildAt(1);
@@ -235,6 +235,7 @@ public class Screen4 extends AppCompatActivity {
         return Math.round((float) dp * density);
     }
 
+    //Saves a signature to the SD-card.
     private void saveSignature(Bitmap signature) {
         String fileName = "Signature_team_"+team+".png";
 
@@ -251,6 +252,7 @@ public class Screen4 extends AppCompatActivity {
         catch (IOException e) { e.printStackTrace(); }
     }
 
+    //Removes a specified player from the selected players.
     private void removeSelectedPlayer(Player playerRemove) {
         for(Player player : selectedPlayers) {
             if(player.name.equals(playerRemove.name) &&
@@ -259,6 +261,42 @@ public class Screen4 extends AppCompatActivity {
                 selectedPlayers.remove(player);
                 return;
             }
+        }
+    }
+
+    //Fetches players and insert them into the UI. Also fetches the teams age group.
+    //If the parser fails to fetch the data, the user is informed and is returned to the previous activity.
+    private void fetchData(String year){
+        try{
+            teamYear = Integer.parseInt(parser.getAge(year, group));
+            for (ArrayList<String> player : parser.getPlayers(url)) {
+                addPlayer(player.get(0), player.get(1));
+            }
+        }
+        catch(IOException e){
+            e.printStackTrace();
+
+            ConnectivityManager cm = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            boolean isConnected = activeNetwork != null &&
+                    activeNetwork.isConnectedOrConnecting();
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(Screen4.this);
+            builder.setCancelable(false);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    setResult(RESULT_CANCELED);
+                    finish();
+                }
+            });
+
+            if(isConnected) builder.setMessage(getString(R.string.error_fetch_player));
+            else builder.setMessage(getString(R.string.error_no_internet));
+
+            builder.create().show();
         }
     }
 }

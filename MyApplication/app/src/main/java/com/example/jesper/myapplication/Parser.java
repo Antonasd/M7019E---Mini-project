@@ -12,7 +12,8 @@ import java.util.ArrayList;
 
 public class Parser {
     private Document doc = null;
-    boolean done = false;
+    private boolean done = false;
+    private boolean error = false;
 
 	//"Config" for the URLs where data is to be fetched from.
     private String getURL (String year, String value, boolean forTeam) {
@@ -28,15 +29,17 @@ public class Parser {
 		
 		//Fetching from a URL shouldn't be run in the main thread.
         Thread getThread = new Thread() {
-            public void run() {
+            public void run(){
                 doc = null;
 
                 try {
                     doc = Jsoup.connect(getURL(year, arena, true)).get();
                     done = true;
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
+                catch(IOException e){
+                    error  = true;
+                }
+
 
             }
         };
@@ -48,6 +51,10 @@ public class Parser {
             }
             catch (InterruptedException e){
                 e.printStackTrace();
+            }
+            if(error){
+                error = false;
+                throw new IOException();
             }
         }
 
@@ -88,7 +95,7 @@ public class Parser {
         return games;
     }
 
-   //Get a list of all the players in a specific match, used in screen 4
+   //Get a list of all the players in a specific match, used in screen 4.
     public ArrayList<ArrayList<String>> getPlayers(final String url) throws IOException {
 
         Thread getThread = new Thread() {
@@ -100,6 +107,7 @@ public class Parser {
                     done = true;
                 } catch (IOException e) {
                     e.printStackTrace();
+                    error = true;
                 }
 
             }
@@ -112,6 +120,10 @@ public class Parser {
             }
             catch (InterruptedException e){
                 e.printStackTrace();
+            }
+            if(error){
+                error = false;
+                throw new IOException();
             }
         }
 
@@ -131,7 +143,7 @@ public class Parser {
         return players;
     }
 
-    //Get the year of brith for a specific group, used to determine if players are overaged.
+    //Get the year of birth for a specific group, used to determine if players are over aged.
     public String getAge(final String year, final String group) throws IOException {
 
         Thread getThread = new Thread() {
@@ -143,6 +155,7 @@ public class Parser {
                     done = true;
                 } catch (IOException e) {
                     e.printStackTrace();
+                    error = true;
                 }
 
             }
@@ -155,6 +168,10 @@ public class Parser {
             }
             catch (InterruptedException e){
                 e.printStackTrace();
+            }
+            if(error){
+                error = false;
+                throw new IOException();
             }
         }
         done = false;

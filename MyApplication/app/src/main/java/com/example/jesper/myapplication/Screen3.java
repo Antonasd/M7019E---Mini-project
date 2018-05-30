@@ -1,7 +1,12 @@
 package com.example.jesper.myapplication;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -120,14 +125,7 @@ public class Screen3 extends AppCompatActivity {
         //Parse through all matches and add a table row for each match with 
         //match number, group, time, team1name, team1url, team2name, team2url
         parser = new Parser();
-        try {
-            for (ArrayList<String> matches : parser.getMatches(year_last2, parseString)) {
-                addMatch(matches.get(1), matches.get(2), matches.get(3), matches.get(4), matches.get(5), matches.get(6), matches.get(7));
-            }
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
+        fetchData(year_last2, parseString);
     }
 
     private void setListeners(){
@@ -255,6 +253,41 @@ public class Screen3 extends AppCompatActivity {
     private int dpToPx(int dp) {
         float density = this.getResources().getDisplayMetrics().density;
         return Math.round((float) dp * density);
+    }
+
+    //Fetches match data.
+    //If the parser fails to fetch the data, the user is informed and is returned to the previous activity.
+    private void fetchData(String year, String parseString){
+        try {
+            for (ArrayList<String> matches : parser.getMatches(year, parseString)) {
+                addMatch(matches.get(1), matches.get(2), matches.get(3), matches.get(4), matches.get(5), matches.get(6), matches.get(7));
+            }
+        }
+        catch(IOException e){
+            e.printStackTrace();
+
+            ConnectivityManager cm = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            boolean isConnected = activeNetwork != null &&
+                    activeNetwork.isConnectedOrConnecting();
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(Screen3.this);
+            builder.setCancelable(false);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    setResult(RESULT_CANCELED);
+                    finish();
+                }
+            });
+
+            if(isConnected) builder.setMessage(getString(R.string.error_fetch_matches));
+            else builder.setMessage(getString(R.string.error_no_internet));
+
+            builder.create().show();
+        }
     }
 
     //If result code is from the two buttons, read the Team string to identify which button was pressed

@@ -38,7 +38,7 @@ public class Screen1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //Request Storage and Camera permissions, for Screen 4 and 5 respectively
-        requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA},1);
+        //requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA},1);
         
         setContentView(R.layout.activity_screen1);
         dateField = (EditText) findViewById(R.id.date);

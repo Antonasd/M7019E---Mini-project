@@ -2,6 +2,7 @@ package com.example.jesper.myapplication;
 
 import java.io.Serializable;
 
+//Simple player object
 public class Player implements Serializable{
     String name;
     int birthYear;

@@ -65,11 +65,13 @@ public class PDFGenerator{
         Paragraph p2 = new Paragraph(lineup2,FontFactory.getFont(FontFactory.HELVETICA, 75));
         Image img1 = Image.getInstance(SIGNATURES[0]);
         Image img2 = Image.getInstance(SIGNATURES[1]);
-        
+
+
         // Adding the essential information to pdfdocument.
         document.add(h1);
         document.add(p);
         document.add(img1);
+        document.newPage();
         document.add(h2);
         document.add(p2);
         document.add(img2);
