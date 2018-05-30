@@ -280,6 +280,7 @@ public class Screen5 extends AppCompatActivity {
 
             System.out.println(mCurrentPhotoPath);
             Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+            img0.setBackground(null);
             img0.setImageBitmap(bitmap);
             frontPath = mCurrentPhotoPath;
 
@@ -312,6 +313,7 @@ public class Screen5 extends AppCompatActivity {
             bmOptions.inPurgeable = true;
 
             Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+            img1.setBackground(null);
             img1.setImageBitmap(bitmap);
             backPath = mCurrentPhotoPath;
 
